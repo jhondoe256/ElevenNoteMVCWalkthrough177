@@ -1,0 +1,50 @@
+﻿@model ElevenNote.Models.Users.UserDetail
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    <h1>Hello, @Model.FirstName - @Model.LastName</h1>
+    <hr/>
+    <div class="row">
+        <div class="col-4">
+            <img style="width:400px;height:400px;" 
+             src="https://assets-global.website-files.com/62accd8ac8ddb9d81911ef69/62deb3a4505ca11be8663301_Career%20Suport2.webp" 
+             alt="user image"/>
+        </div>
+        <div class="col-8">
+            <a asp-action="Create" asp-controller="Note" class="btn btn-primary">Create New</a>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Category Title</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var value in Model.UserNotes)
+                    {
+                        <tr>
+                            <td>@value.Title</td>
+                            <td>@value.CategoryTitle</td>
+                            <td>
+                                <a class="btn btn-warning" asp-action="Edit" asp-controller="Note" asp-route-id="@value.Id">Edit</a>
+                                <a class="btn btn-primary" asp-action="Detail" asp-controller="Note" asp-route-id="@value.Id">Details</a>
+                                <a class="btn btn-danger" asp-action="Delete" asp-controller="Note" asp-route-id="@value.Id">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+else
+{
+    <div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>
+}

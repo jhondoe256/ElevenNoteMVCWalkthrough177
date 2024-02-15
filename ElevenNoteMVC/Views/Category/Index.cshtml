@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ElevenNote.Models.Categories.CategoryListItem>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Category Index</h1>
+<hr />
+
+<div class="card containercontainer" >
+   
+    <div class="card-body">
+    <img src="~/images/efEmblem.png" class="card-img-top" style="width:40px; height:50px" alt="...">
+        <a asp-action="Create" class="btn btn-outline-primary">Create New</a>
+        </p>
+        <div class="container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CategoryTitle)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CreatedUtc)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CategoryTitle)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreatedUtc)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                @Html.ActionLink("Details", "Detail", new { id = item.Id }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+        </div>
+</div>
+
+
